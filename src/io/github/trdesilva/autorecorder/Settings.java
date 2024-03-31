@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 public class Settings
 {
     public static final Path SETTINGS_DIR = Paths.get(System.getenv("LOCALAPPDATA"))
-                                                 .resolve("autorecorder");
+                                                 .resolve("autorecorder-frc");
     private final File settingsFile;
     
     @JsonIgnoreProperties(ignoreUnknown = true)

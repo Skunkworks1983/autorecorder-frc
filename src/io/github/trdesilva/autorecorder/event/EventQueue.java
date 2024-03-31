@@ -28,7 +28,7 @@ public class EventQueue
     public EventQueue()
     {
         postQueue = new ConcurrentLinkedQueue<>();
-        postQueue.offer(new Event(EventType.SUCCESS, "Welcome to Autorecorder"));
+        postQueue.offer(new Event(EventType.SUCCESS, "Welcome to Autorecorder FRC"));
         semaphore = new Semaphore(1);
         consumers = new LinkedList<>();
     

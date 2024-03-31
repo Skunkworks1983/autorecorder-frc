@@ -30,10 +30,10 @@ import java.util.Scanner;
 public class Updater
 {
     public static final Path SETTINGS_DIR = Paths.get(System.getenv("LOCALAPPDATA"))
-                                                 .resolve("autorecorder");
+                                                 .resolve("autorecorder-frc");
     public static final String LAUNCHER_FILENAME = "launcher.cmd";
     public static final String UPDATER_FILENAME = "updater.jar";
-    public static final String GITHUB_RELEASE_LATEST_URL = "https://api.github.com/repos/trdesilva/autorecorder/releases/latest";
+    public static final String GITHUB_RELEASE_LATEST_URL = "https://api.github.com/repos/Skunkworks1983/autorecorder-frc/releases/latest";
     public static final String ASSETS_FIELD = "assets";
     public static final String ASSET_NAME_FIELD = "name";
     public static final String ASSET_URL_FIELD = "url";
@@ -43,7 +43,7 @@ public class Updater
         File installDir = SETTINGS_DIR.toFile();
         if(!installDir.exists())
         {
-            System.out.println("Settings directory missing; performing first time setup (make sure to get the YouTube API client secrets file)...");
+            System.out.println("Settings directory missing; performing first time setup...");
             if(!installDir.mkdirs())
             {
                 System.err.println("Failed to create install directory");
@@ -146,8 +146,7 @@ public class Updater
                             }
                             else
                             {
-                                System.err.println("Failed to download latest version from GitHub");
-                                throw new IOException("GitHub request failed with status " + downloadResponse.getStatusLine());
+                                System.err.println("Failed to download latest version from GitHub with status " + downloadResponse.getStatusLine());
                             }
                             
                             break;
@@ -171,7 +170,7 @@ public class Updater
             }
             else
             {
-                System.err.println("Failed to retrieve version metadata from GitHub");
+                System.err.println("Failed to retrieve version metadata from GitHub with status " + latestResponse.getStatusLine());
     
                 if(!installDir.canRead())
                 {
@@ -182,9 +181,11 @@ public class Updater
                 {
                     installDir.setWritable(true);
                 }
-                
-                throw new IOException("GitHub request failed with status " + latestResponse.getStatusLine());
             }
+        }
+        catch(Exception e)
+        {
+            System.err.println("Update from remote failed: " + e.getLocalizedMessage());
         }
     }
 }
