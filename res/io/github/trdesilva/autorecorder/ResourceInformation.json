@@ -1,0 +1,43 @@
+{
+  "versions": [
+    "wpimath-cpp-2024.3-windowsx86-64.2-windowsx86-64 (edu.wpi.first.wpimath:wpimath-cpp:2024.3.2)",
+    "wpinet-cpp-2024.3-windowsx86-64.2-windowsx86-64 (edu.wpi.first.wpinet:wpinet-cpp:2024.3.2)",
+    "wpiutil-cpp-2024.3-windowsx86-64.2-windowsx86-64 (edu.wpi.first.wpiutil:wpiutil-cpp:2024.3.2)",
+    "ntcore-cpp-2024.3-windowsx86-64.2-windowsx86-64 (edu.wpi.first.ntcore:ntcore-cpp:2024.3.2)",
+    "cscore-cpp-2024.3-windowsx86-64.2-windowsx86-64 (edu.wpi.first.cscore:cscore-cpp:2024.3.2)",
+    "opencv-cpp-4.8-windowsx86-64.0-2-windowsx86-64 (edu.wpi.first.thirdparty.frc2024.opencv:opencv-cpp:4.8.0-2)"
+  ],
+  "windows": {
+    "x86-64": [
+      "/windows/x86-64/shared/cscore.dll",
+      "/windows/x86-64/shared/cscorejni.dll",
+      "/windows/x86-64/shared/ntcore.dll",
+      "/windows/x86-64/shared/ntcorejni.dll",
+      "/windows/x86-64/shared/opencv_aruco480.dll",
+      "/windows/x86-64/shared/opencv_calib3d480.dll",
+      "/windows/x86-64/shared/opencv_core480.dll",
+      "/windows/x86-64/shared/opencv_dnn480.dll",
+      "/windows/x86-64/shared/opencv_features2d480.dll",
+      "/windows/x86-64/shared/opencv_flann480.dll",
+      "/windows/x86-64/shared/opencv_gapi480.dll",
+      "/windows/x86-64/shared/opencv_highgui480.dll",
+      "/windows/x86-64/shared/opencv_imgcodecs480.dll",
+      "/windows/x86-64/shared/opencv_imgproc480.dll",
+      "/windows/x86-64/shared/opencv_java480.dll",
+      "/windows/x86-64/shared/opencv_ml480.dll",
+      "/windows/x86-64/shared/opencv_objdetect480.dll",
+      "/windows/x86-64/shared/opencv_photo480.dll",
+      "/windows/x86-64/shared/opencv_stitching480.dll",
+      "/windows/x86-64/shared/opencv_video480.dll",
+      "/windows/x86-64/shared/opencv_videoio480.dll",
+      "/windows/x86-64/shared/WindowsLoaderHelper.dll",
+      "/windows/x86-64/shared/wpimath.dll",
+      "/windows/x86-64/shared/wpimathjni.dll",
+      "/windows/x86-64/shared/wpinet.dll",
+      "/windows/x86-64/shared/wpinetjni.dll",
+      "/windows/x86-64/shared/wpiutil.dll",
+      "/windows/x86-64/shared/wpiutiljni.dll"
+    ]
+  },
+  "hash": "8b8fd835a308ceb48ebf102aab41ddb7"
+}

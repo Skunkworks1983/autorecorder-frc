@@ -1,9 +1,8 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="autorecorder:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/autorecorder_jar</output-path>
-    <root id="archive" name="autorecorder.jar">
+  <artifact type="jar" name="autorecorder-frc:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/autorecorder_frc_jar</output-path>
+    <root id="archive" name="autorecorder-frc.jar">
       <element id="module-output" name="autorecorder" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/kwhat/jnativehook/2.2.1/jnativehook-2.2.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" path-in-jar="/" />
@@ -63,6 +62,11 @@
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-core/2.13.2/jackson-core-2.13.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.13.2/jackson-databind-2.13.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/joda-time/joda-time/2.10.8/joda-time-2.10.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/kwhat/jnativehook/2.2.1/jnativehook-2.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ntcore-java-2024.3.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/wpiutil-java-2024.3.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/ntcore-jni-2024.3.2-windowsx86-64.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/wpiutil-jni-2024.3.2-windowsx86-64.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

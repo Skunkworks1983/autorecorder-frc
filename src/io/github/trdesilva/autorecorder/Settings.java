@@ -83,7 +83,6 @@ public class Settings
     {
         if(!settingsFile.exists())
         {
-            container.excludedGames.add("leagueclientux.exe");
             events.postEvent(new Event(EventType.INFO, "Creating settings file on first launch"));
         }
         else
@@ -97,16 +96,12 @@ public class Settings
             catch(IOException e)
             {
                 events.postEvent(new Event(EventType.WARNING, "Failed to load settings"));
-                container.excludedGames.add("leagueclientux.exe");
             }
         }
-        
-        if(DateTime.now().isAfter(new DateTime(container.lastFetchedGamesTimestamp).plusDays(1)))
-        {
-            populateGamesFromApi();
-            save();
-            events.postEvent(new Event(EventType.SUCCESS, "Settings saved"));
-        }
+
+        container.games.add("elastic_dashboard.exe");
+        save();
+        events.postEvent(new Event(EventType.SUCCESS, "Settings saved"));
     }
     
     public void save()
@@ -283,46 +278,5 @@ public class Settings
     public String formatExeName(String original)
     {
         return original.toLowerCase().replace("/", FileSystems.getDefault().getSeparator());
-    }
-    
-    private void populateGamesFromApi()
-    {
-        try
-        {
-            HttpClient client = HttpClientBuilder.create().build();
-            HttpResponse response = null;
-            
-            // discord's game list is public and requires no auth
-            response = client.execute(new HttpGet("https://discord.com/api/v10/applications/detectable"));
-            
-            JsonNode root = new ObjectMapper().readTree(response.getEntity().getContent());
-            events.postEvent(new Event(EventType.DEBUG, "got games from discord API: " + root.size()));
-            synchronized(container.games)
-            {
-                for(Iterator<JsonNode> gameIter = root.elements(); gameIter.hasNext(); )
-                {
-                    JsonNode game = gameIter.next();
-                    if(game.has("executables"))
-                    {
-                        for(Iterator<JsonNode> exeIter = game.get("executables").elements(); exeIter.hasNext(); )
-                        {
-                            JsonNode exe = exeIter.next();
-                            String exeName = formatExeName(exe.get("name").textValue());
-                            if(!container.excludedGames.contains(exeName))
-                            {
-                                container.games.add(exeName);
-                            }
-                        }
-                    }
-                    
-                }
-                events.postEvent(new Event(EventType.DEBUG,"got executables: " + container.games.size()));
-                container.lastFetchedGamesTimestamp = DateTime.now().getMillis();
-            }
-        }
-        catch(IOException e)
-        {
-            events.postEvent(new Event(EventType.WARNING, "Failed to retrieve game list"));
-        }
     }
 }

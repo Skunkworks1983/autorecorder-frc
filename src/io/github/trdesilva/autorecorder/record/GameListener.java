@@ -8,6 +8,14 @@ package io.github.trdesilva.autorecorder.record;
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import edu.wpi.first.networktables.BooleanSubscriber;
+import edu.wpi.first.networktables.IntegerSubscriber;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.NetworkTablesJNI;
+import edu.wpi.first.util.CombinedRuntimeLoader;
+import edu.wpi.first.util.WPIUtilJNI;
+import edu.wpi.first.wpilibj.DriverStation;
 import io.github.trdesilva.autorecorder.Settings;
 import io.github.trdesilva.autorecorder.event.Event;
 import io.github.trdesilva.autorecorder.event.EventConsumer;
@@ -42,6 +50,9 @@ public class GameListener implements AutoCloseable, EventConsumer
     // when set, don't allow the listener to stop recordings
     private final AtomicBoolean forceRecording;
     private final AtomicReference<String> currentGame;
+    private final NetworkTableInstance networkTables;
+    private final NetworkTable fmsInfo;
+    private final IntegerSubscriber fmsInfoSubscriber;
     
     private Thread thread;
     
@@ -57,6 +68,13 @@ public class GameListener implements AutoCloseable, EventConsumer
         forceDisableListening = new AtomicBoolean(false);
         forceRecording = new AtomicBoolean(false);
         currentGame = new AtomicReference<>();
+
+        networkTables = NetworkTableInstance.getDefault();
+        fmsInfo = networkTables.getTable("/FMSInfo");
+        fmsInfoSubscriber = fmsInfo.getIntegerTopic("FMSControlData").subscribe(0);
+        networkTables.startClient4("Autorecorder FRC");
+        networkTables.setServer("localhost");
+        networkTables.startDSClient();
         
         events.addConsumer(this);
     }
@@ -96,8 +114,10 @@ public class GameListener implements AutoCloseable, EventConsumer
                                                 }
                             
                                                 if(exeCheckResults.containsKey(command) && exeCheckResults.get(command)
-                                                                                                          .isPresent())
+                                                                                                          .isPresent()
+                                                && (isFmsAttached() || isRobotEnabled()))
                                                 {
+
                                                     String program = exeCheckResults.get(command).get();
                                                     startRecording(program);
                                                 }
@@ -107,10 +127,12 @@ public class GameListener implements AutoCloseable, EventConsumer
                                     else if(!forceRecording.get())
                                     {
                                         if(!settings.getGames().contains(settings.formatExeName(currentGame.get()))
-                                                || ProcessHandle.allProcesses()
+                                                || (ProcessHandle.allProcesses()
                                                                 .noneMatch(
                                                                         ph -> Paths.get(ph.info().command().orElse(""))
-                                                                                   .endsWith(currentGame.get())))
+                                                                                   .endsWith(currentGame.get()))
+                                                    )
+                                                || !(isFmsAttached() || isRobotEnabled()))
                                         {
                                             stopRecording();
                                             // allow listener to start recordings again now that the game we force-stopped has terminated
@@ -200,6 +222,8 @@ public class GameListener implements AutoCloseable, EventConsumer
         }
         else if(event.getType().equals(EventType.MANUAL_RECORDING_START))
         {
+            events.postEvent(new Event(EventType.DEBUG, "FMS connected: " + isFmsAttached()));
+            events.postEvent(new Event(EventType.DEBUG, "Enabled: " + isRobotEnabled()));
             // if we're resuming an automatic recording, restore the listener to its normal state
             if(forceDisableListening.get())
             {
@@ -241,5 +265,15 @@ public class GameListener implements AutoCloseable, EventConsumer
     public Set<EventType> getSubscriptions()
     {
         return EVENT_TYPES;
+    }
+    
+    boolean isFmsAttached()
+    {
+        return (fmsInfoSubscriber.get() & 16) == 16;
+    }
+    
+    boolean isRobotEnabled()
+    {
+        return (fmsInfoSubscriber.get() & 1) == 1;
     }
 }

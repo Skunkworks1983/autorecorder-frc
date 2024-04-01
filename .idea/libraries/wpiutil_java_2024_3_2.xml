@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="wpiutil-java-2024.3.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/wpiutil-java-2024.3.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/ntcore-java-2024.3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
