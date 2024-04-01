@@ -8,9 +8,6 @@ package io.github.trdesilva.autorecorder;
 import com.google.common.collect.Sets;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import edu.wpi.first.networktables.NetworkTablesJNI;
-import edu.wpi.first.util.CombinedRuntimeLoader;
-import edu.wpi.first.util.WPIUtilJNI;
 import io.github.trdesilva.autorecorder.event.Event;
 import io.github.trdesilva.autorecorder.event.EventQueue;
 import io.github.trdesilva.autorecorder.event.EventType;
@@ -47,10 +44,6 @@ public class Main
     
         LoadingWindow loadingWindow = new LoadingWindow();
         Injector injector = Guice.createInjector(new VideoModule(), new GuiModule(isDebugMode));
-
-        NetworkTablesJNI.Helper.setExtractOnStaticLoad(false);
-        WPIUtilJNI.Helper.setExtractOnStaticLoad(false);
-        CombinedRuntimeLoader.loadLibraries(Main.class,"wpiutiljni", "ntcorejni");
 
         Settings settings = injector.getInstance(Settings.class);
         settings.populate();

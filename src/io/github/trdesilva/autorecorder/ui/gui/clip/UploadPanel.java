@@ -60,13 +60,14 @@ public class UploadPanel extends DefaultPanel
         JButton uploadButton = new JButton("Upload to YouTube");
         uploadButton.setToolTipText(
                 "By clicking 'Upload,' you certify that the content you are uploading complies with the YouTube Terms of Service (including the YouTube Community Guidelines) at https://www.youtube.com/t/terms. Please be sure not to violate others' copyright or privacy rights.");
-        
-        controlPanel.add(titleLabel, "cell 0 0");
-        controlPanel.add(titleField, "cell 0 0, grow");
-        controlPanel.add(descriptionLabel, "cell 1 0");
-        controlPanel.add(descriptionScrollPane, "cell 1 0, grow");
-        controlPanel.add(privacySelector, "cell 2 0");
-        controlPanel.add(uploadButton, "cell 3 0");
+    
+        // TODO remove youtube functionality until there's a scalable API key solution
+//        controlPanel.add(titleLabel, "cell 0 0");
+//        controlPanel.add(titleField, "cell 0 0, grow");
+//        controlPanel.add(descriptionLabel, "cell 1 0");
+//        controlPanel.add(descriptionScrollPane, "cell 1 0, grow");
+//        controlPanel.add(privacySelector, "cell 2 0");
+//        controlPanel.add(uploadButton, "cell 3 0");
         
         add(backButton, "cell 0 0");
         add(playbackPanel, "cell 0 1, grow, wmin 400, hmin 300");

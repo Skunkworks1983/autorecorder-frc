@@ -63,10 +63,7 @@
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.13.2/jackson-databind-2.13.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/joda-time/joda-time/2.10.8/joda-time-2.10.8.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/kwhat/jnativehook/2.2.1/jnativehook-2.2.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/ntcore-java-2024.3.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/wpiutil-java-2024.3.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/ntcore-jni-2024.3.2-windowsx86-64.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/wpiutil-jni-2024.3.2-windowsx86-64.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../WPILibSampleApp/Java/build/libs/Java.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
