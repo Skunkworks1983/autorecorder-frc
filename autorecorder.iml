@@ -20,6 +20,11 @@
     <orderEntry type="library" name="google.inject.guice" level="project" />
     <orderEntry type="library" name="google.inject.extensions.guice.assistedinject" level="project" />
     <orderEntry type="library" name="fasterxml.jackson.datatype.joda" level="project" />
-    <orderEntry type="library" name="github.kwhat.jnativehook" level="project" />
+    <orderEntry type="library" name="github.kwhat.jnativehook1" level="project" />
+    <orderEntry type="library" name="Java" level="project" />
+    <orderEntry type="library" name="wpiutil-java-2024.3.2" level="project" />
+    <orderEntry type="library" name="wpiutil-jni-2024.3.2-windowsx86-64" level="project" />
+    <orderEntry type="library" name="ntcore-java-2024.3.2" level="project" />
+    <orderEntry type="library" name="ntcore-jni-2024.3.2-windowsx86-64" level="project" />
   </component>
 </module>

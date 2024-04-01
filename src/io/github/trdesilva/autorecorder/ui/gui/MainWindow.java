@@ -171,6 +171,8 @@ public class MainWindow implements Navigator
         
         gameListener.startListener();
         
+        // TODO remove youtube functionality until there's a scalable API key solution
+        /*
         new Thread(() -> {
             try
             {
@@ -185,7 +187,7 @@ public class MainWindow implements Navigator
                 eventQueue.postEvent(new Event(EventType.DEBUG, "Refreshing upload URLs failed: " + e.getMessage()));
             }
         }, "Youtube metadata refresh thread").start();
-        
+        */
         windowCloseHandler.addCloseable(clipQueue);
         windowCloseHandler.addCloseable(uploadQueue);
         windowCloseHandler.addCloseable(gameListener);
